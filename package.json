@@ -1,0 +1,22 @@
+{
+    "name": "hack-a-world-api",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/theVedanta/hack-a-world-api",
+    "author": "Vedanta Somnathe <vedanta1412@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "cookie-parser": "^1.4.6",
+        "cors": "^2.8.5",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.2",
+        "mongoose": "^6.1.4"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.15"
+    },
+    "scripts": {
+        "start": "node main",
+        "dev": "nodemon main"
+    }
+}
