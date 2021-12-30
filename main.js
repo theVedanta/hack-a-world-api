@@ -29,3 +29,4 @@ app.use(cors());
 
 // ROUTES
 app.use("/auth", require("./routes/auth"));
+app.use("/events", require("./routes/events"));

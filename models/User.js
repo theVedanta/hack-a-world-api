@@ -19,17 +19,11 @@ const UserSchema = new mongoose.Schema({
         required: false,
         unique: true,
     },
-    // name: {
-    //     type: String,
-    //     required: true,
-    // },
     username: {
         type: String,
-        required: true,
     },
     organiser: {
         type: Boolean,
-        required: true,
     },
 });
 

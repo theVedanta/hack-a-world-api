@@ -19,8 +19,7 @@ router.post("/", async (req, res) => {
                 google_id: body.googleId,
                 pfp_url: body.imageUrl,
                 access_token: body.access_token,
-                username: body.email.split("@")[0],
-                organiser: body.organiser,
+                oragniser: false,
             });
 
             await user.save();
@@ -28,6 +27,48 @@ router.post("/", async (req, res) => {
         }
     } catch (err) {
         console.log(err);
+        res.json({ error: err });
+    }
+});
+
+router.get("/change-role", async (req, res) => {
+    try {
+        const user = await User.findOne({
+            access_token: req.query.access_token,
+        });
+
+        if (user) {
+            await User.updateOne(
+                {
+                    access_token: req.query.access_token,
+                },
+                { $set: { organiser: !user.organiser } }
+            );
+            res.json({ done: true });
+        } else {
+            res.json({ error: "Some Error has occurred" });
+        }
+    } catch (err) {
+        res.json({ error: err });
+    }
+});
+
+router.get("/pfp", async (req, res) => {
+    try {
+        const user = await User.findOne({
+            access_token: req.query.access_token,
+        });
+
+        if (user) {
+            res.json({
+                pfp: user.pfp_url,
+                organiser: user.organiser,
+                _id: user._id,
+            });
+        } else {
+            res.json({ noUser: true });
+        }
+    } catch (err) {
         res.json({ error: err });
     }
 });
